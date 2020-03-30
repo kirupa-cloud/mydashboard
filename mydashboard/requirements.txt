@@ -1,0 +1,7 @@
+Django==2.1.2
+djangorestframework==3.8.2
+requests==2.20.0
+python_dateutil==2.8.0
+jsonschema==3.0.1
+django-debug-toolbar
+psycopg2
