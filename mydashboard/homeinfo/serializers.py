@@ -8,7 +8,6 @@ class HomeSerializer(serializers.ModelSerializer):
         fields = ['id', 'memberName', 'dob']
 
 
-
 class HomeInfoSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     memberName = serializers.CharField(required=True, allow_blank=False, max_length=100)
