@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomeInfo</title>
+
+</head>
+<body>
+<h1>ALL MEMBER INFO s</h1>
+<button type="submit" value="Select"> Search</button>
+
+{% if sent%}
+<table style="border: 1px solid black">
+    <tr>
+        {% for i in data%}
+        <td>
+            {{i}}
+        </td>
+        {%endfor%}
+    </tr>
+</table>
+{%endif%}
+</body>
+</html>
