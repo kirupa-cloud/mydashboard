@@ -13,3 +13,4 @@ class HomeInfoList(generics.ListCreateAPIView):
 class HomeInfoDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = HomeInfo.objects.all()
     serializer_class = HomeSerializer
+
