@@ -31,3 +31,7 @@ class UtilityNew(viewsets.ViewSet):
         serializers  = UtiliyInfoSerializer(utility)
         return Response(serializers.data)
 
+
+class UtilityUpdate(viewsets.ModelViewSet):
+    queryset = UtilityInfo.objects.all()
+    serializer_class = UtiliyInfoSerializer

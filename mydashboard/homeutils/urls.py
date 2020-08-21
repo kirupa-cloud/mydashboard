@@ -2,10 +2,10 @@ from django.urls import path
 from .views import *
 
 from rest_framework.routers import SimpleRouter
-from homeutils.views import UtilityNew
+from homeutils.views import UtilityNew, UtilityUpdate
 
 router = SimpleRouter(trailing_slash=False)
-router.register("util", UtilityNew, "homeutils")
+router.register("util", UtilityUpdate, "homeutils")
 urlpatterns = router.urls
 
 # urlpatterns = [
