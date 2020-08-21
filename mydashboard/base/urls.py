@@ -21,7 +21,8 @@ from .views import Ping
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ping/', Ping.as_view()),
-    path('', include('homeinfo.urls'))
+    path('', include('homeinfo.urls')),
+    path('', include('homeutils.urls')),
 ]
 
 if settings.DEBUG:
