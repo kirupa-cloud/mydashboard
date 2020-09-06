@@ -35,3 +35,23 @@ class UtilityNew(viewsets.ViewSet):
 class UtilityUpdate(viewsets.ModelViewSet):
     queryset = UtilityInfo.objects.all()
     serializer_class = UtiliyInfoSerializer
+
+class UtilityPayment(viewsets.ViewSet):
+    def list(self, request):
+        queryset = UtilityPayments.objects.all()
+        serializers = UtilityPaymentSerializer(queryset, many=True)
+        return Response(serializers.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = UtilityPayments.objects.all()
+        paymentdetail = get_object_or_404(queryset, pk=pk)
+        serializers = UtilityPaymentSerializer(paymentdetail)
+        return Response(serializers.data)
+
+    def create(self, request):
+        serializers = UtilityPaymentSerializer(data=request.data)
+
+        if serializers.is_valid():
+            UtilityPayments.objects.create(**serializers.validated_data)
+
+            return Response(serializers.validated_data, status='CREATED')
