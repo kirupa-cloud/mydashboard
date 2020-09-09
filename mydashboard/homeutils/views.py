@@ -3,6 +3,7 @@ from rest_framework.response import Response
 
 from rest_framework import generics
 from rest_framework import viewsets
+from rest_framework import status
 from .serializers import *
 from .models import *
 
@@ -50,8 +51,18 @@ class UtilityPayment(viewsets.ViewSet):
 
     def create(self, request):
         serializers = UtilityPaymentSerializer(data=request.data)
-
+        print(request.data)
         if serializers.is_valid():
             UtilityPayments.objects.create(**serializers.validated_data)
 
-            return Response(serializers.validated_data, status='CREATED')
+            return Response(serializers.validated_data, status=status.HTTP_201_CREATED)
+
+        return Response({
+            'status': 'Bad request',
+            'message': 'Payment could not be created with received data.'
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+class UtilityPaymentview(viewsets.ModelViewSet):
+
+    queryset = UtilityPayments.objects.all()
+    serializer_class = UtilityPaymentSerializer

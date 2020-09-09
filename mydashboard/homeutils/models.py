@@ -19,11 +19,11 @@ class UtilityInfo(models.Model):
 
 class UtilityPayments(models.Model):
     id = models.CharField(max_length=32, primary_key=True, default=generic_id(), unique=True, editable=False)
-    utility_id = models.ForeignKey(UtilityInfo, related_name="utility_detail", on_delete=False)
+    utility = models.ForeignKey(UtilityInfo, related_name="utility_detail", on_delete=False, null=True, blank=True)
     status = models.CharField(max_length=15, editable=True)
-    service_start_date = models.DateTimeField(blank=True, editable=True, null=True)
-    service_end_date = models.DateTimeField(blank=True, editable=True, null=True)
-    amount = models.FloatField(blank=False)
+    service_start_date = models.DateField(blank=True, editable=True, null=True)
+    service_end_date = models.DateField(blank=True, editable=True, null=True)
+    amount = models.FloatField(blank=False, editable=True)
 
     class Meta:
         db_table = "utility_payments"

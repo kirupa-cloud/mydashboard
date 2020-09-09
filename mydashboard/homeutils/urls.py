@@ -2,13 +2,14 @@ from django.urls import path
 from .views import *
 
 from rest_framework.routers import SimpleRouter
-from homeutils.views import UtilityNew, UtilityUpdate, UtilityPayment
+from homeutils.views import UtilityNew, UtilityUpdate, UtilityPayment, UtilityPaymentview
 
 router = SimpleRouter(trailing_slash=False)
-router.register("util", UtilityUpdate, "homeutils")
-urlpatterns = router.urls
+router.register("utilinfo", UtilityUpdate)
+# router.register("utilpayment", UtilityPaymentview)
+# urlpatterns = router.urls
 
-urlpatterns = [
+urlpatterns = router.urls + [
     path('utilpayment/', UtilityPayment.as_view({'get': 'retrieve', 'post' : 'create'}))
 ]
 
