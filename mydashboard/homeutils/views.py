@@ -1,9 +1,12 @@
 from django.shortcuts import render, get_object_or_404
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 
 from rest_framework import generics
 from rest_framework import viewsets
 from rest_framework import status
+
+from .project import Project
 from .serializers import *
 from .models import *
 
@@ -66,3 +69,14 @@ class UtilityPaymentview(viewsets.ModelViewSet):
 
     queryset = UtilityPayments.objects.all()
     serializer_class = UtilityPaymentSerializer
+
+class GroceryInfoView(viewsets.ModelViewSet):
+
+    queryset = GroceryInfo.objects.all()
+    serializer_class = GrocerySerializer
+
+class DetailView(ListAPIView):
+    serializer_class = Detail
+    def get_queryset(self):
+        return Project.get_all()
+

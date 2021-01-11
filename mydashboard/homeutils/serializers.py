@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import UtilityInfo, UtilityPayments
+from .models import UtilityInfo, UtilityPayments, GroceryInfo
 
 
 class UtiliyInfoSerializer(serializers.HyperlinkedModelSerializer):
@@ -25,3 +25,21 @@ class UtilityPaymentSerializer(serializers.HyperlinkedModelSerializer):
                   'service_end_date',
                   'amount'
                   ]
+
+
+class GrocerySerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = GroceryInfo
+        fields = '__all__'
+
+
+class Detail(serializers.Serializer):
+    name = serializers.ReadOnlyField()
+    info = serializers.ReadOnlyField()
+    comment = serializers.ReadOnlyField()
+
+    def create(self, validated_data):
+        pass
+    def update(self, instance, validated_data):
+        pass

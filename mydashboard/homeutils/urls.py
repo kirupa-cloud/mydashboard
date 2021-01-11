@@ -6,11 +6,14 @@ from homeutils.views import UtilityNew, UtilityUpdate, UtilityPayment, UtilityPa
 
 router = SimpleRouter(trailing_slash=False)
 router.register("utilinfo", UtilityUpdate)
+router.register("groceryinfo", GroceryInfoView)
+
 # router.register("utilpayment", UtilityPaymentview)
 # urlpatterns = router.urls
 
 urlpatterns = router.urls + [
-    path('utilpayment/', UtilityPayment.as_view({'get': 'retrieve', 'post' : 'create'}))
+    path('utilpayment/', UtilityPayment.as_view({'get': 'retrieve', 'post' : 'create'})),
+    path('detail/', DetailView.as_view())
 ]
 
 # urlpatterns = [
