@@ -36,9 +36,18 @@ class UtilityNew(viewsets.ViewSet):
         return Response(serializers.data)
 
 
-class UtilityUpdate(viewsets.ModelViewSet):
+class UtilityUpdate1(viewsets.ModelViewSet):
     queryset = UtilityInfo.objects.all()
     serializer_class = UtiliyInfoSerializer
+
+class UtilityUpdate(viewsets.ModelViewSet):
+    queryset = UtilityInfo.objects.all()
+
+    def get_serializer_class(self):
+        print(self.request.version)
+        if self.request.version == 'v1':
+            return UtiliyInfoSerializer
+        return UtiliyInfoSerializer2
 
 class UtilityPayment(viewsets.ViewSet):
     def list(self, request):
@@ -65,10 +74,6 @@ class UtilityPayment(viewsets.ViewSet):
             'message': 'Payment could not be created with received data.'
         }, status=status.HTTP_400_BAD_REQUEST)
 
-class UtilityPaymentview(viewsets.ModelViewSet):
-
-    queryset = UtilityPayments.objects.all()
-    serializer_class = UtilityPaymentSerializer
 
 class GroceryInfoView(viewsets.ModelViewSet):
 

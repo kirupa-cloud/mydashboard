@@ -15,14 +15,16 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from .views import Ping
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ping/', Ping.as_view()),
     path('', include('homeinfo.urls')),
-    path('', include('homeutils.urls')),
+    path('api/v1/', include('homeutils.urls',namespace='v1')),
+    path('api/v2/', include('homeutils.urls',namespace='v2'))
 ]
 
 if settings.DEBUG:

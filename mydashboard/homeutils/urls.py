@@ -2,10 +2,12 @@ from django.urls import path
 from .views import *
 
 from rest_framework.routers import SimpleRouter
-from homeutils.views import UtilityNew, UtilityUpdate, UtilityPayment, UtilityPaymentview
+from homeutils.views import UtilityNew, UtilityUpdate, UtilityPayment
+
+app_name = 'homeutils'
 
 router = SimpleRouter(trailing_slash=False)
-router.register("utilinfo", UtilityUpdate)
+router.register("utilinfo", UtilityUpdate,)
 router.register("groceryinfo", GroceryInfoView)
 
 # router.register("utilpayment", UtilityPaymentview)
